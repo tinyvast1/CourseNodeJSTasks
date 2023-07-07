@@ -46,9 +46,9 @@ class json2csv {
 
 let file;
 
-fs.readFile('pdf_tasks/data/comments.json', {encoding: 'utf-8'})
+fs.readFile('pdf_tasks/data/users.json', {encoding: 'utf-8'})
     .then(res => {
         console.log('JSON прочитан')
-        new json2csv(JSON.parse(res), ['postId', 'name', 'body'])
+        new json2csv(JSON.parse(res))
     })
     .catch(error => console.log(error))
