@@ -1,4 +1,4 @@
-import { ValidationError } from '../errors';
+import { ValidationError } from "../errors";
 
 export const getPort = () => {
     const { PORT } = process.env;

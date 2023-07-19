@@ -1,4 +1,4 @@
-import { ValidationError } from '../errors';
+import { ValidationError } from '../errors'
 
 export const getPassword = () => {
     const { PASSWORD } = process.env;

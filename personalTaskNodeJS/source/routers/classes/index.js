@@ -3,17 +3,18 @@ import { get, post } from "./handlers";
 import { getByHash, putByHash, deleteByHash } from "./hash/handlers";
 import { enrollClasses } from "./hash/enroll/handlers";
 import { expelClasses } from "./hash/expel/handlers";
+import { authorization } from "../../helpers";
 
 const router = Router();
 
 router.get('/', get);
-router.post('/', post);
+router.post('/', [ authorization ], post);
 
-router.get('/:classesHash', getByHash);
-router.put('/:classesHash', putByHash);
-router.delete('/:classesHash', deleteByHash);
+router.get('/:classesHash', [ authorization ], getByHash);
+router.put('/:classesHash', [ authorization ], putByHash);
+router.delete('/:classesHash', [ authorization ], deleteByHash);
 
-router.post('/:classesHash/enroll', enrollClasses);
-router.post('/:classesHash/expel', expelClasses)
+router.post('/:classesHash/enroll', [ authorization ], enrollClasses);
+router.post('/:classesHash/expel', [ authorization ], expelClasses)
 
 export {router as classes}

@@ -1,2 +1,2 @@
-export { NotFoundError } from './notFoundError';
-export { ValidationError } from './validationError';
+export { ValidationError } from './ValidationError'
+export { NotFoundError } from './NotFoundError'

@@ -1,9 +1,8 @@
 export class NotFoundError extends Error {
-    constructor(...args) {
+    constructor(message, statusCode = 500, req, ...args) {
         super(...args);
-        const [ , statusCode = 404 ] = args;
 
-        if (typeof statusCode !== 'number') {
+        if (typeof statusCode !== 'number' && typeof message !== 'string') {
             throw new Error('can not construct NotFoundError due to arguments error');
         }
 
@@ -15,6 +14,8 @@ export class NotFoundError extends Error {
 
         Error.captureStackTrace(this, NotFoundError);
         this.name = 'NotFoundError';
+        this.message = message;
         this.statusCode = statusCode;
+        this.req = req;
     }
 }

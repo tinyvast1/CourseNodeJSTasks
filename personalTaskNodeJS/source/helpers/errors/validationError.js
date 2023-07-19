@@ -1,9 +1,8 @@
 export class ValidationError extends Error {
-    constructor(...args) {
+    constructor(message, statusCode = 500, req, ...args) {
         super(...args);
-        const [ , statusCode = 400 ] = args;
-
-        if (typeof statusCode !== 'number') {
+        
+        if (typeof statusCode !== 'number' && typeof message !== 'string') {
             throw new Error('can not construct ValidationError due to arguments error');
         }
 
@@ -12,9 +11,11 @@ export class ValidationError extends Error {
                 'statusCode in ValidationError should be a number in range from 100 to 599',
             );
         }
-
+        
         Error.captureStackTrace(this, ValidationError);
         this.name = 'ValidationError';
+        this.message = message;
         this.statusCode = statusCode;
+        this.req = req;
     }
 }

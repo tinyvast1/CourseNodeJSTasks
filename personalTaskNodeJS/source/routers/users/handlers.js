@@ -1,5 +1,5 @@
 export const get = (req, res) => {
-    try {
+    try { 
         res.status(200).json({ data: [] });
     } catch (error) {
         res.status(400).json({ message: error.message });
